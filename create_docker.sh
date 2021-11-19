@@ -37,4 +37,4 @@ name=$2
 mount=$3
 password=$4
 
-docker run -e PASSWORD=pass -p $port:8787 -d -v $mount:/home/rstudio/data --name $name bam_filter_samuel
+docker run -e PASSWORD=pass -p $port:8787 -d -v $mount:/home/rstudio/data --name $name bam_filter_eleniel
