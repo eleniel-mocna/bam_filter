@@ -50,8 +50,25 @@ It takes the following arguments:
 This function takes as input a BAM file and a filter. It filters the BAM by the given filter. The outputs are then saved to folder `<NAME>_<regex_filter>`.
 It takes the following arguments:
 
-- `regex_filter` -> regex of searched sequence (e.g.: "ATTGA[GC]AG")
-- `unfiltered_bam` -> path to bam that should be filtered.
+- `regex_filter`      -> regex of searched sequence (e.g.: "ATTGA[GC]AG")
+- `unfiltered_bam`    -> path to bam that should be filtered.
 - `NAME`              -> Folder name for outputs of this filtering is 'NAME_<regex_filter>'
-- `reference_path` -> path to reference file (e.g.: "/reference/ucsc.hg19.fasta")
+- `reference_path`    -> path to reference file (e.g.: "/reference/ucsc.hg19.fasta")
 - `remove_unfiltered` -> Remove unfiltered bam from output folder? [FALSE]
+
+### Bash interface
+
+This utility also offers a `bam_reduce.sh` bash script.
+Usage: `./bam_reduce.sh <REGEX FOR SEARCH> <INPUT FILE> <OUTPUT FILE>`, where:
+
+- `<REGEX FOR SEARCH>` is  desired filter
+- `<INPUT FILE>` is an existing BAM file
+- `<OUTPUT FILE>` is path to a new BAM that is the result of this filtering.
+
+## Detailed functionality description
+
+This utility filters given sequencing data (actually a BAM file - when fastQ data is given, it converts it to a BAM file) by a given filter. Through the filter pass only following reads:
+
+1) Reads which have the exact sequence in their SEQ string
+2) Reads which are mates of reads found in 1.
+    - A mate is determined by the QNAME field, meaning all supplementary reads are passed through as well.
