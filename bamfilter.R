@@ -12,7 +12,7 @@ filter_bam <- function(regex_filter,
     filter_fq( regex_filter=regex_filter,
                unfiltered_bam=unfiltered_bam,
                NAME=NAME,
-               reference_path, reference_path
+               reference_path,
                remove_unfiltered=remove_unfiltered)
 }
 
@@ -35,22 +35,19 @@ filter_fq <- function( regex_filter=NULL,
     if (is.null(NAME))
     {
         NAME=
-            paste(
-                strsplit(
-                        tail(
-                            strsplit("../../M554-10-4_S28_L001_R1_001.fastq", "/")[[1]],
-                            1),
-                        ".", fixed=TRUE)[[1]][1],
-                 "_",
-                 regex_filter,
-                 sep="")            
-    }
+            strsplit(
+                tail(
+                    strsplit(reads1_path, "/")[[1]],
+                    1),
+                ".", fixed=TRUE)[[1]][1]}
+    NAME=paste(NAME, regex_filter, sep="-")
     skip_filter <- is.null(regex_filter)
     if (skip_filter)
     {
         print("Filter not given, exiting.")
         return()
     }
+    print(paste("Writing input into", NAME))
     system(paste("mkdir", NAME))
     skip_alignment <- is.null(reads1_path) || is.null(reads2_path)
 
