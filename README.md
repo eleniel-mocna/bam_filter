@@ -42,7 +42,7 @@ It takes the following arguments:
 - `reference_path`    -> path to reference file (e.g.: "/reference/ucsc.hg19.fasta") [/reference/ucsc.hg19.fasta]
 - `unfiltered_bam`    -> Is ignored, if reads1\_path & reads2_path are filled
                       else path to bam to be filtered. [NULL]
-- `NAME`              -> Folder name for outputs of this filtering is 'NAME\_<regex\_filter>'
+- `NAME`              -> Folder name for outputs of this filtering is 'NAME\_<regex\_filter>' [reads1_file_name (without path to file and extension)]
 - `remove_unfiltered` -> Remove unfiltered bam from output folder? [FALSE]
 
 #### filter_bam(...)
@@ -52,7 +52,7 @@ It takes the following arguments:
 
 - `regex_filter`      -> regex of searched sequence (e.g.: "ATTGA[GC]AG")
 - `unfiltered_bam`    -> path to bam that should be filtered.
-- `NAME`              -> Folder name for outputs of this filtering is 'NAME_<regex_filter>'
+- `NAME`              -> Folder name for outputs of this filtering is 'NAME_<regex_filter>' [reads1_file_name (without path to file and extension)]
 - `reference_path`    -> path to reference file (e.g.: "/reference/ucsc.hg19.fasta")
 - `remove_unfiltered` -> Remove unfiltered bam from output folder? [FALSE]
 
