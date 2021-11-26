@@ -14,7 +14,7 @@ RUN mkdir /bam_filter
 COPY bam_reduce.sh /bam_filter
 COPY filter.awk /bam_filter
 COPY bamfilter.R /bam_filter
-COPY reference /reference
+# COPY reference /reference # Reference should be mounted via -v argument
 
 CMD ["/init"]
 
